@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1 class="text-center">{{ item.item }}</h1>
+<hr>
+<h1 class="text-center">is a {{ item.category }}</h1>
+<h1 class="text-center">Current Price: {{ item.price }}</h1>
+<div class="text-center">
+    <a class="btn btn-primary " href="{{ url_for('browse') }}" role="button">Return to Browse</a>
+    <a class="btn btn-success" href="{{ url_for('single_item', item_id = item.id)}}" role="button">Add To Cart</a>
+
+</div>
+{% endblock content %}

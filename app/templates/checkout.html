@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<a class="btn btn-danger" href="#" role="button">Clear List</a>
+<a class="btn btn-success" href="#" role="button">Proceed to Payment Options</a>
+your total for this order is: $ {{ price }}
+{% for x in cart %}
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Item #{{ loop.index }}</h6>
+            <p class="card-text">category : {{ x.category }}</p>
+            <p class="card-text">type : {{ x.item }}</p>
+            <p class="card-text">Item price: ${{ x.price }}</p>
+            <a href="{{ url_for('remove', item_id = x.id)}}">remove from cart</a>
+        </div>
+    </div>
+{% endfor %}
+<a class="btn btn-success" href="{{url_for('browse')}}" role="button">Back to Shopping</a>
+{% endblock content %}

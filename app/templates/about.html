@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    
+    <h1>This is a test</h1>
+    {% for p in about_data %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ p[0] }}</h5>
+            <p class="card-text">{{ p[1] }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}

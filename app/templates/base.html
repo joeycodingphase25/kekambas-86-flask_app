@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="Description" content="Enter your description here"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <title>JoJo's Flask Nightmare</title>
+    </head>
+    <style>
+        .sweet {
+          text-align: center;
+          padding: 3px;
+          background-color: rgb(22, 4, 4);
+          color: white;
+          justify-content: space-around;
+          display: flex;
+        }
+        footer {
+            display: flex;
+            justify-content: center;
+            padding-top: 500px;
+        }
+        .nice {
+            background-color: rgb(77, 28, 0);
+        }
+        .cus {
+            color: blueviolet;
+        }
+        .container {
+            padding-top: 50px;
+        }
+               
+        </style>
+    <body>
+        <div class="row bg-dark">
+            <h1 class="text-center text-white"> {{ title }}</h1>
+        </div>
+        <nav class="nav bg-dark d-flex justify-content-around">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About the journey</a>  
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('signup') }}">SignUp</a>
+                <a href="{{ url_for('login') }}">Login</a> 
+                {% else %}
+                <a href="{{ url_for('browse') }}">Browse</a>  
+                <a href="{{ url_for('checkout') }}">Checkout</a>  
+                <a href="{{ url_for('logout') }}">Logout</a>  
+            {% endif %}
+        </nav>
+        {% include 'alert_message.html' %}
+        <div class="container">
+
+
+            {% block content %}
+            
+            {% endblock content %}
+        </div>
+        <footer>
+            <div class="nice col-2">
+            </div>
+            <div class="sweet col-8">
+                <li style="display:inline">
+                    <p class="cus">Lemme</p>
+                    <p><a href="#">test1</a></p>
+                    <p><a href="#">test1</a></p>
+                </li>
+                <li style="display:inline">
+                    <p class="cus">Teach</p>
+                    <p><a href="#">test1</a></p>
+                    <p><a href="#">test1</a></p>
+                </li>
+                <li style="display:inline">
+                    <p class="cus">You</p>
+                    <p><a href="#">test1</a></p>
+                    <p><a href="#">test1</a></p>
+                </li>
+                <li style="display:inline">
+                    <p class="cus">Flask</p>
+                    <p><a href="#">test1</a></p>
+                    <p><a href="#">test1</a></p>
+                </li>
+                
+            </div> 
+            <div class="nice col-2">
+                
+            </div>
+        </footer>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</html>
