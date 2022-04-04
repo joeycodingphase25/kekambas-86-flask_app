@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<a class="btn btn-danger" href="#" role="button">Clear List</a>
+<a class="btn btn-danger" href="{{ url_for('remove_all') }}" role="button">Clear List</a>
 <a class="btn btn-success" href="#" role="button">Proceed to Payment Options</a>
 your total for this order is: $ {{ price }}
 {% for x in cart %}

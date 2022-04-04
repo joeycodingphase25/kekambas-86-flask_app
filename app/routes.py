@@ -107,6 +107,15 @@ def remove(item_id):
     flash(f"{sample} has succesfully been removed to your cart", "warning")
     return redirect(url_for('checkout'))
 
+@app.route('/checkout/remove-all')
+@login_required 
+def remove_all():
+    var = Cart.query.all() # get list of object
+    for object in var:
+        object.delete()
+    flash("You have cleared your Cart", "warning")
+    return redirect(url_for('checkout'))
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     title = 'Welcome Admin, Please add to ItemForm'

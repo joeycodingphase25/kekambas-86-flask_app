@@ -50,7 +50,7 @@ class Cart(db.Model):
     
     def delete(self):
         db.session.delete(self)
-        db.session.commit
+        db.session.commit()
 
 # MAYBE create a model for storing data in the 
 class Item(db.Model):
