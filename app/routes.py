@@ -72,7 +72,7 @@ def logout():
 def browse():
     title = 'Shopping Center'
     data = Item.query.all()
-    price = round(sum([float(item.price) for item in Cart.query.all()]), 2)
+    price = round(sum([float(item.price) for item in Cart.query.filter_by(user_id=current_user.id)]), 2)
     return render_template('browse.html', title=title, data=data, total=price)
 
 @app.route('/browse/<item_id>')
@@ -82,6 +82,7 @@ def single_item(item_id):
     cart = Cart(category = var.category, item = var.item, price = var.price, user_id = current_user.id)
     flash(f"{cart.item} has succesfully been added to your cart for ${cart.price}.", "success")
     return redirect(url_for('browse'))
+
 
 @app.route('/item-detail/<item_id>')
 def item_detail(item_id):
@@ -94,8 +95,9 @@ def item_detail(item_id):
 @login_required
 def checkout():
     title = 'Your Shopping Cart'
-    cart = [x for x in Cart.query.all()]
-    price = round(sum([float(item.price) for item in Cart.query.all()]), 2)
+    # cart = [x for x in Cart.query.filter_by(user_id=current_user.id)] # makes a list of objects
+    cart = Cart.query.filter_by(user_id=current_user.id)
+    price = sum(float(x.price) for x in Cart.query.filter_by(user_id=current_user.id))
     return render_template('checkout.html', cart=cart, title=title, price=price)
 
 @app.route('/checkout/remove/<item_id>')
